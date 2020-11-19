@@ -15,11 +15,11 @@ def main(argv):
     initLog()
 
     while True:
-        disk_raw = requests.get('https://api.direct.playstation.com/commercewebservices/ps-direct-us/users/anonymous/products/productList/?fields=BASIC&productCodes=3005816')
+        disc_raw = requests.get('https://api.direct.playstation.com/commercewebservices/ps-direct-us/users/anonymous/products/productList/?fields=BASIC&productCodes=3005816')
 
-        disk_json = disk_raw.json()
+        disc_json = disc_raw.json()
 
-        disk_status = 'nope' if disk_json['products'][0]['stock']['stockLevelStatus'] == 'outOfStock' else '!!STOCK!!'
+        disc_status = 'nope' if disc_json['products'][0]['stock']['stockLevelStatus'] == 'outOfStock' else '!!STOCK!!'
 
         digital_raw = requests.get('https://api.direct.playstation.com/commercewebservices/ps-direct-us/users/anonymous/products/productList/?fields=BASIC&productCodes=3005817')
 
@@ -27,7 +27,7 @@ def main(argv):
 
         digital_status = 'nope' if digital_json['products'][0]['stock']['stockLevelStatus'] == 'outOfStock' else '!!STOCK!!'
 
-        logging.info('\nDISK: {}\nDIGITAL: {}\n'.format(disk_status, digital_status))
+        logging.info('\nDISC: {}\nDIGITAL: {}\n'.format(disc_status, digital_status))
         time.sleep(delay)
 
 
